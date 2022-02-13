@@ -4,3 +4,15 @@
   color: green !important;
 }
 
+
+.plus_button button{
+  height: 60px;
+  width: 60px;
+  line-height: 55px;
+  margin-bottom: 20px;
+  z-index: 999;
+}
+
+.plus_button button view.van-icon-plus{
+  font-size: 2em !important;
+}
