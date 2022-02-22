@@ -7,7 +7,7 @@ Page({
     active: 0
   },
   onLoad() {
-    
+
   },
   onChange(event) {
     console.log(event.detail);
