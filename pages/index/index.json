@@ -1,8 +1,7 @@
 {
   "usingComponents": {
-    "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
-    "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
-    "van-panel": "/miniprogram_npm/vant-weapp/panel/index",
-    "van-button": "/miniprogram_npm/vant-weapp/button/index"
-  }
+    "l-card":"/miniprogram_npm/lin-ui/card/index",
+    "l-loading": "/miniprogram_npm/lin-ui/loading/index"
+  },
+  "enablePullDownRefresh": true
 }

@@ -75,7 +75,7 @@ App({
     return this.globalData.BACKEND_SERVER + apiUrl;
   },
   globalData: {
-    BACKEND_SERVER:"http://10.7.36.87:8001/api/v1",
+    BACKEND_SERVER:"http://10.7.40.222:8001/api/v1",
     userInfo: null,
     token:""
   },

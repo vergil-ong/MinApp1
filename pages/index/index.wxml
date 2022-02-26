@@ -1,22 +1,22 @@
 <!--index.wxml-->
-<van-panel 
-  title="医院预定" 
-  desc="距离预定结束还有3个小时，别忘了去预定" 
-  status="2021-12-16 16:00">
-</van-panel>
-<van-panel title="去麦当劳薅羊毛" desc="距离今天结束还有10个小时，今天是巨无霸8.8"  status="2021-12-16 17:00">
-</van-panel>
-<van-panel title="服务检查" desc="下班前进行服务检查"  status="2021-12-16 18:00">
-</van-panel>
-<van-panel title="下班" desc="距离下班还有1小时10分钟，别忘了打卡哟"  status="2021-12-16 19:00">
-</van-panel>
-<van-panel title="拿快递" desc="回家前去拿下快递 若比邻家 3个韵达"  status="2021-12-16 20:00">
-</van-panel>
 
-<van-tabbar active="{{ active }}" bind:change="onChange">
-  <van-tabbar-item icon="home-o">备忘</van-tabbar-item>
-  <van-tabbar-item>
-    <van-button class="plus_button" type="primary" round icon="plus" ></van-button>
-  </van-tabbar-item>
-  <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
-</van-tabbar>
+<l-loading show="{{isRefreshing}}" l-class="loading-center" type="change"></l-loading>
+
+<l-card type="primary"
+       plaintext="{{true}}"
+       title="有什么笑话可以笑一辈子?">
+ <view class="content">
+   大雄要死掉了,他对妻子说:我死之后你找一个男人我就在地下打一一个滚。
+   说完就咽气了。某天妻子有事要找大雄，就去了地府问阎王找人，但是地府人那么多...
+ </view>
+</l-card>
+<l-card type="primary"
+       plaintext="{{true}}"
+       title="有什么笑话可以笑一辈子?">
+ <view class="content">
+   大雄要死掉了,他对妻子说:我死之后你找一个男人我就在地下打一一个滚。
+   说完就咽气了。某天妻子有事要找大雄，就去了地府问阎王找人，但是地府人那么多...
+ </view>
+
+
+</l-card>

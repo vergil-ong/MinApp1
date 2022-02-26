@@ -9,5 +9,6 @@
     "navigationBarTitleText": "备忘小程序",
     "navigationBarTextStyle":"black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }
