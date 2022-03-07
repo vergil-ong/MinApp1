@@ -1,78 +1,57 @@
-.tabbar_box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.tab-bar {
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 999;
-    width: 100%;
-    box-shadow: 0px -5px 8px 0px rgba(26, 117, 87, 0.05);
-}
-.tabbar_box.iphoneX-height{
-    padding-bottom: 66rpx;
-}
-.tabbar_nav{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 20rpx;
-    height: 100%;
-    position: relative;
-    padding-top: 10rpx;
-    padding-bottom: 10rpx;
-}
-.special-wrapper{
-    width: 50rpx;
-    height: 50rpx;
-    font-size: 0;
-}
-.special-wrapper.pos-a{
-    position: absolute;
-    left: 0;
     right: 0;
-    margin: auto;
-    top: -30rpx;
-    width: 92rpx;
-    height: 92rpx;
-    border-radius: 50%;
-    background-color: #fff;
-    text-align: center;
-    box-sizing: border-box;
+    height: 48px;
+    background: #FFF;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-.circle{
-    position: absolute;
-    width: 130rpx;
-    height: 46rpx;
-    top: -46rpx;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 9;
+    line-height: 1.2;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid #e6e6e6;
+    overflow: visible;
 }
 
-.special-wrapper .tabbar_icon{
-    width: 50rpx;
-    height: 50rpx;
+.tab-bar-item {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.special-wrapper.pos-a .tabbar_icon{
-    width: 80rpx;
-    height: 80rpx;
+.tab-bar-item-cover-image {
+    width: 27px;
+    height: 27px;
 }
-.placeholder{
-    height: 50rpx;
-    height: 50rpx;
+
+.bulge {
+    background-color: #FFF;
+    overflow: visible;
 }
-.nav_txt{
-    color: #9EA3B9;
-    font-size: 22rpx;
+.bulge .tab-bar-bulge {
+    position: absolute;
+    z-index: -1;
+    top: -15px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border-top: 1px solid #e6e6e6;
+    background-color: #FFF;
+    overflow: visible;
 }
-.checkColor{
-    color: #20CA8F;
+.bulge .tab-bar-item-cover-image{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: -12px;
+    padding-top: 10px;
+    overflow: visible;
 }
+.tab-bar-item .tab-bar-item-cover-view {
+    font-size: 12px;
+}
+
+/*cover-view{
+    overflow: visible;
+}*/

@@ -1,13 +1,8 @@
-<view class="tabbar_box {{isIphoneX?'iphoneX-height':''}}" style="background-color:{{tabbar.backgroundColor}}">
-    <block wx:for="{{tabbar.list}}" wx:key="item" wx:for-index="sindex">
-        <view bindtap="choseNav" class="tabbar_nav" data-sindex="{{sindex}}" hover-class="none" url="{{item.pagePath}}" style="color:{{tabbar.selectedColor}}">
-            <view class='special-wrapper {{item.selected?"pos-a":""}}'>
-                <image wx:if="{{item.selected}}" class="tabbar_icon" src="{{item.selectedIconPath}}"></image>
-                <image wx:else class="tabbar_icon" src="{{item.iconPath}}"></image>
-            </view>
-            <image class="circle" wx:if="{{item.selected}}" src="../../assets/icons/circle_shadow.png"></image>
-            <view class="placeholder" wx:if="{{item.selected}}"></view>
-            <view class="nav_txt {{item.selected?'checkColor':''}}">{{item.text}}</view>
-        </view>
-    </block>
-</view>
+<cover-view class="tab-bar">
+    <cover-view class="tab-bar-border"></cover-view>
+    <cover-view wx:for="{{list}}" wx:key="index" class="tab-bar-item {{item.bulge?'bulge':''}}" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+        <view  wx:if="item.bulge" class="tab-bar-bulge tab-bar-view"></view>
+        <cover-image class="tab-bar-item-cover-image" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></cover-image>
+        <cover-view wx:if="{{item.text}}" class="tab-bar-item-cover-view" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view>
+    </cover-view>
+</cover-view>
