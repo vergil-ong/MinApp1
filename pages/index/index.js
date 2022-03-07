@@ -15,11 +15,7 @@ Page({
     page:1,
     pageSize:5,
     noteList:[],
-    array: [{
-      message: 'foo',
-    }, {
-      message: 'bar'
-    }]
+    tabbar: {},
   },
   onLoad() {
     that = this;
@@ -46,13 +42,6 @@ Page({
         hasMoreData: true
       });
     })
-    // setTimeout(function () {
-    //   wx.stopPullDownRefresh()
-    //   that.setData({
-    //     isRefreshing: false,
-    //     hasMoreData: true
-    //   });
-    // }, 1500);
   },
   loadNoteList(){
     return new Promise(function (resolve, reject){
@@ -80,6 +69,5 @@ Page({
         complete: () => {}
       });
     });
-
   }
 })
