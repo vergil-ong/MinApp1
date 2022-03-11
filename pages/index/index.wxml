@@ -2,19 +2,26 @@
 
 <l-loading show="{{isRefreshing}}" l-class="loading-center" type="change"></l-loading>
 
-<view wx:for="{{noteList}}" wx:key="id">
-    <l-card type="avatar"
-            plaintext="{{true}}"
-            title="{{item.title}}">
-        <view class="content">
-            {{item.descShow}}
+<view class="scroll-container">
+    <scroll-view refresher-enabled="true" bindrefresherrefresh="refresh" refresher-triggered="{{triggered}}"
+                  scroll-y="true" style="height:{{scrollHeight}}px">
+        <view wx:for="{{noteList}}" wx:key="id">
+            <l-card type="avatar"
+                    plaintext="{{true}}"
+                    title="{{item.title}}">
+                <view class="content">
+                    {{item.descShow}}
+                </view>
+                <l-tag  shape="circle"
+                        bg-color="#f3f3f3"
+                        font-color="#3963BC"
+                        slot="more"
+                        size="large">
+                    {{item.showNoticeTimeFormat}}
+                </l-tag>
+            </l-card>
         </view>
-        <l-tag  shape="circle"
-                bg-color="#f3f3f3"
-                font-color="#3963BC"
-                slot="more"
-                size="large">
-            {{item.showNoticeTimeFormat}}
-        </l-tag>
-    </l-card>
+    </scroll-view>
 </view>
+
+

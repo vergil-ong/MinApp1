@@ -4,6 +4,5 @@
     "l-loading": "/miniprogram_npm/lin-ui/loading/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index"
-  },
-  "enablePullDownRefresh": true
+  }
 }

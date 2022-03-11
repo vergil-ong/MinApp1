@@ -39,7 +39,8 @@
     "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": [],
+    "packNpmRelationList": [
+    ],
     "minifyWXSS": true,
     "disableUseStrict": false,
     "minifyWXML": true,
@@ -47,7 +48,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.5.2",
+  "libVersion": "2.10.4",
   "appid": "wx89bcb4c98a0c3c94",
   "projectname": "minapp-1",
   "debugOptions": {

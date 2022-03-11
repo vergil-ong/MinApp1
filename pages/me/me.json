@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+  },
+  "navigationBarBackgroundColor": "#C0C0C0",
+  "navigationBarTitleText": "个人信息"
+}

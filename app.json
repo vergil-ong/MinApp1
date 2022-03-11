@@ -2,16 +2,17 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/logs2/logs2"
+    "pages/me/me",
+    "pages/memo/add/add"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "备忘小程序",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#f6f6f6"
   },
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
   "tabBar": {
     "custom": true,
     "color": "#7A7E83",
@@ -26,13 +27,13 @@
         "selectedIconPath": "/icons/tab-bar/list-selected.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/memo/add/add",
         "text": "",
         "iconPath": "/icons/tab-bar/plus-circle.png",
         "selectedIconPath": "/icons/tab-bar/plus-circle-selected.png"
       },
       {
-        "pagePath": "pages/logs2/logs2",
+        "pagePath": "pages/me/me",
         "text": "我的",
         "iconPath": "/icons/tab-bar/user.png",
         "selectedIconPath": "/icons/tab-bar/user-selected.png"

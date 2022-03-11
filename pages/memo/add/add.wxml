@@ -1,0 +1,116 @@
+
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px">
+    <view class="memo-title">待办内容</view>
+    <view class="form-group">
+        <van-field
+                model:value="{{ title }}"
+                label="待办事项"
+                placeholder="写下事项提醒自己"
+                clearable
+                required
+        />
+        <van-field
+                model:value="{{ desc }}"
+                label="详细描述"
+                placeholder="具体描述"
+                clearable
+        />
+    </view>
+
+    <view class="memo-title">提醒方式</view>
+    <view class="form-group">
+        <van-field
+                model:value="{{noticeTimeTypeVal}}"
+                label="提醒方式"
+                placeholder="选择提醒方式"
+                readonly="true"
+                required
+                bind:tap="onNoticeTimeTypeShow"
+        />
+        <van-action-sheet
+                show="{{ noticeTimeTypeShow }}"
+                actions="{{ noticeTimeTypeActions }}"
+                bind:close="onNoticeTimeTypeClose"
+                bind:select="onNoticeTimeTypeSelect"
+        />
+        <van-field wx:if="{{noticeTimeOnceShow}}"
+                   model:value="{{noticeTimeOnceCalenderVal}}"
+                label="提醒日期"
+                readonly="true"
+                placeholder="提醒日期"
+                bind:tap="onNoticeTimeCalenderShow"
+        />
+        <van-calendar show="{{noticeTimeOnceCalender}}"
+                      bind:close="onNoticeTimeCalenderClose"
+                      bind:confirm="onNoticeTimeCalenderConfirm" />
+        <picker wx:if="{{noticeTimeOnceShow}}"
+                mode="time"
+                value="{{noticeTimeOncePickerTime}}"
+                bindchange="noticeTimeOncePickerTime" >
+            <van-field wx:if="{{noticeTimeOnceShow}}"
+                       model:value="{{noticeTimeOncePickerTime}}"
+                       label="提醒时间"
+                       readonly="true"
+                       placeholder="提醒时间"/>
+        </picker>
+
+    </view>
+
+    <view class="memo-title">提醒周期</view>
+    <view class="form-group">
+        <van-cell >
+            <view slot="title">
+                提前提醒时间
+            </view>
+            <view slot="extra">
+                <van-stepper
+                    id="noticePeriodFirstTimeId"
+                    custom-class="middle-cell-view"
+                    value="{{noticePeriodFirstTime}}"
+                    bind:change="stepperChange"
+                    />
+                <view class="middle-cell-view margin-left">分钟</view>
+            </view>
+        </van-cell>
+        <van-cell>
+            <view slot="title">
+                <view class="middle-cell-view" >提醒次数</view>
+    <!--            <view class="view-info&#45;&#45;dot"/>-->
+            </view>
+            <view slot="extra">
+                <van-stepper
+                        id="noticePeriodTimesId"
+                        custom-class="middle-cell-view"
+                         value="{{noticePeriodTimes}}"
+                        bind:change="stepperChange"/>
+            </view>
+        </van-cell>
+        <van-cell title="提醒间隔">
+            <view slot="extra">
+                <van-stepper
+                        id="noticePeriodIntervalId"
+                        custom-class="middle-cell-view"
+                         value="{{noticePeriodInterval}}"
+                        bind:change="stepperChange"/>
+                <view class="middle-cell-view margin-left">分钟</view>
+            </view>
+        </van-cell>
+
+
+    </view>
+    <view class="view-button-group">
+        <van-button
+                custom-class="view-button-group-btn"
+                type="primary"
+                bind:click="resetNoticeTask">
+            重置</van-button>
+        <van-button
+                custom-class="view-button-group-btn"
+                color="#FFA500"
+                bind:click="addNoticeTask">
+            提交</van-button>
+    </view>
+
+</scroll-view>
+
+<van-toast id="van-toast" />

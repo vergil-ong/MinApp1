@@ -24,12 +24,24 @@ Component({
     page:1,
     pageSize:5,
     noteList:[],
+    triggered: true,
+    scrollHeight:0
   },
   methods:{
     onLoad() {
       that = this;
       app.doLogin().then(() => {
         that.loadNoteList();
+      });
+      this.setScrollHeight();
+    },
+    setScrollHeight: function (){
+      wx.getSystemInfo({
+        success: function (res){
+          that.setData({
+            scrollHeight:res.windowHeight -100
+          })
+        }
       });
     },
     onPullDownRefresh: function (){
@@ -50,6 +62,7 @@ Component({
       })
     },
     loadNoteList(){
+      console.log('loadNoteList');
       return new Promise(function (resolve, reject){
         wx.request({
           url: httpUtil.getUrl('/notice/list/'),
@@ -75,6 +88,12 @@ Component({
           complete: () => {}
         });
       });
-    }
+    },
+    refresh(){
+      this.loadNoteList();
+      this.setData({
+        triggered:false
+      })
+    },
   },
 })
