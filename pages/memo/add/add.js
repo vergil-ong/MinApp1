@@ -1,6 +1,7 @@
 const httpUtil = require('../../../utils/http-util');
 const util = require('../../../utils/util')
 import Toast from "../../../miniprogram_npm/@vant/weapp/toast/toast";
+const app = getApp()
 
 var that;
 Component({
@@ -27,8 +28,8 @@ Component({
                 name: '周期性提醒'
             }
         ],
-        noticeTimeTypeVal:"",
-        noticeTimeOnceShow: false,
+        noticeTimeTypeVal:"一次性提醒",
+        noticeTimeOnceShow: true,
         noticeTimeOnceCalender: false,
         noticeTimeOnceCalenderVal: '',
         noticeTimeOncePickerShow: false,
@@ -42,6 +43,7 @@ Component({
         onLoad() {
           that = this;
           this.setScrollHeight();
+          this.resetNoticeTask();
         },
         setScrollHeight:function (){
             wx.getSystemInfo({
@@ -192,6 +194,40 @@ Component({
                 responseType: 'text',
                 success: (result) => {
                     console.log(result);
+                    that.authSubscribe();
+                },
+                fail: (error) => {
+                    console.log(error);
+                },
+                complete: () => {}
+            });
+        },
+        resetNoticeTask:function (){
+            let date = new Date();
+            this.setData({
+                title:'',
+                desc:'',
+                noticeTimeTypeVal:'一次性提醒',
+                noticeTimeOnceCalenderVal:util.formatDate(date),
+                noticeTimeOncePickerTime:util.formDateTime(date),
+                noticePeriodFirstTime:1,
+                noticePeriodTimes:1,
+                noticePeriodInterval:1,
+            });
+        },
+        authSubscribe: function (){
+            let tmplIds = app.globalData.subTmpId;
+            wx.requestSubscribeMessage({   // 调起消息订阅界面
+                tmplIds: [tmplIds],
+                success (res) {
+                    console.log('订阅消息 成功 ');
+                    console.log(res);
+                },
+                fail (er){
+                    console.log("订阅消息 失败 ");
+                    console.log(er);
+                },
+                complete(){
                     Toast({
                         type: 'success',
                         message: '添加成功',
@@ -209,24 +245,9 @@ Component({
                             that.resetNoticeTask()
                         },
                     });
-                },
-                fail: (error) => {
-                    console.log(error);
-                },
-                complete: () => {}
+                }
             });
-        },
-        resetNoticeTask:function (){
-            this.setData({
-                title:'',
-                desc:'',
-                noticeTimeTypeVal:'',
-                noticeTimeOnceCalenderVal:'',
-                noticeTimeOncePickerTime:'00:00',
-                noticePeriodFirstTime:1,
-                noticePeriodTimes:1,
-                noticePeriodInterval:1,
-            });
-        },
+
+        }
     }
 })

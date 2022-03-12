@@ -34,8 +34,16 @@ const formatDate = function (date){
   return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 }
 
+const formDateTime = function (date){
+  date = new Date(date)
+  var hh = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours());
+  var mm = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes());
+  return hh + ':' + mm
+}
+
 module.exports = {
   formatTime,
   formatTimeFromTimeStamp,
-  formatDate
+  formatDate,
+  formDateTime,
 }

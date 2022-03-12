@@ -56,7 +56,7 @@
 
     </view>
 
-    <view class="memo-title">提醒周期</view>
+<!--    <view class="memo-title">提醒周期</view>-->
     <view class="form-group">
         <van-cell >
             <view slot="title">
@@ -72,10 +72,9 @@
                 <view class="middle-cell-view margin-left">分钟</view>
             </view>
         </van-cell>
-        <van-cell>
+        <!--<van-cell>
             <view slot="title">
                 <view class="middle-cell-view" >提醒次数</view>
-    <!--            <view class="view-info&#45;&#45;dot"/>-->
             </view>
             <view slot="extra">
                 <van-stepper
@@ -94,7 +93,7 @@
                         bind:change="stepperChange"/>
                 <view class="middle-cell-view margin-left">分钟</view>
             </view>
-        </van-cell>
+        </van-cell>-->
 
 
     </view>

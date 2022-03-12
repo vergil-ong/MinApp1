@@ -94,6 +94,7 @@ Component({
       this.setData({
         triggered:false
       })
-    },
+    }
+
   },
 })

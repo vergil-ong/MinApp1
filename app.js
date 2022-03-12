@@ -81,6 +81,7 @@ App({
   globalData: {
     userInfo: null,
     token:"",
+    subTmpId:"avt_YjYuImBIKecu3FXzP-Qwoks6gT5j2sus_O-M2TU",
   }
 
 })
