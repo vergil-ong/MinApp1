@@ -1,5 +1,6 @@
 const httpUtil = require('../../../utils/http-util');
 const util = require('../../../utils/util')
+const storageUtil = require('../../../utils/storage-util')
 import Toast from "../../../miniprogram_npm/@vant/weapp/toast/toast";
 const app = getApp()
 
@@ -203,17 +204,54 @@ Component({
             });
         },
         resetNoticeTask:function (){
-            let date = new Date();
-            this.setData({
-                title:'',
-                desc:'',
-                noticeTimeTypeVal:'一次性提醒',
-                noticeTimeOnceCalenderVal:util.formatDate(date),
-                noticeTimeOncePickerTime:util.formDateTime(date),
-                noticePeriodFirstTime:1,
-                noticePeriodTimes:1,
-                noticePeriodInterval:1,
-            });
+            let memoId = wx.getStorageSync(storageUtil.MEMO_ID);
+            if (memoId){
+                console.log('resetNoticeTask '+ memoId);
+                wx.request({
+                    url: httpUtil.getUrl('/notice/memo/task/'+memoId),
+                    data: {},
+                    header: httpUtil.getCommonHeader(),
+                    method: 'GET',
+                    dataType: 'json',
+                    responseType: 'text',
+                    success: (result) => {
+                        if (result.statusCode == 200){
+                            let taskData = result.data.Data;
+                            console.log(taskData)
+                            let date = new Date(taskData.NoticeOnceTime);
+                            that.setData({
+                                title:taskData.title,
+                                desc:taskData.desc,
+                                noticeTimeTypeVal:'一次性提醒',
+                                noticeTimeOnceCalenderVal:util.formatDate(date),
+                                noticeTimeOncePickerTime:util.formDateTime(date),
+                                noticePeriodFirstTime:taskData.NoticePeriodFirstTimeMinute,
+                                noticePeriodTimes:taskData.NoticePeriodTimes,
+                                noticePeriodInterval:taskData.NoticePeriodInterval,
+                            });
+                        } else{
+                        }
+                    },
+                    fail: (error) => {
+                        console.log(error);
+                    },
+                    complete: () => {}
+                });
+                wx.setStorageSync(storageUtil.MEMO_ID, '');
+            } else {
+                let date = new Date();
+                this.setData({
+                    title:'',
+                    desc:'',
+                    noticeTimeTypeVal:'一次性提醒',
+                    noticeTimeOnceCalenderVal:util.formatDate(date),
+                    noticeTimeOncePickerTime:util.formDateTime(date),
+                    noticePeriodFirstTime:1,
+                    noticePeriodTimes:1,
+                    noticePeriodInterval:1,
+                });
+            }
+
         },
         authSubscribe: function (){
             let tmplIds = app.globalData.subTmpId;

@@ -4,8 +4,8 @@
 
 <view class="scroll-container">
     <scroll-view refresher-enabled="true" bindrefresherrefresh="refresh" refresher-triggered="{{triggered}}"
-                  scroll-y="true" style="height:{{scrollHeight}}px">
-        <view wx:for="{{noteList}}" wx:key="id">
+                  scroll-y="true" style="height:{{scrollHeight}}px;">
+        <!--<view wx:for="{{noteList}}" wx:key="id">
             <l-card type="avatar"
                     plaintext="{{true}}"
                     title="{{item.title}}">
@@ -20,8 +20,28 @@
                     {{item.showNoticeTimeFormat}}
                 </l-tag>
             </l-card>
+        </view>-->
+        <view wx:for="{{noteList}}" wx:key="id">
+            <van-swipe-cell right-width="{{ 130 }}" style="touch-action: none;">
+                <van-cell-group>
+                    <van-cell custom-class="list-cell"  label="{{item.descShow}}" >
+                        <view slot="title">
+                            {{item.title}}
+                        </view>
+                        <view slot="extra">
+                            {{item.showNoticeTimeFormat}}
+                        </view>
+                    </van-cell>
+                </van-cell-group>
+                <view class="right-view-group" slot="right">
+                    <view class="right-view right-view-info" bind:tap="detailBtnTap" data-id="{{item.id}}">详情</view>
+                    <view class="right-view right-view-done" bind:tap="finishBtnTap" data-id="{{item.id}}">完成</view>
+                </view>
+            </van-swipe-cell>
         </view>
     </scroll-view>
 </view>
+
+<van-dialog id="van-dialog" />
 
 

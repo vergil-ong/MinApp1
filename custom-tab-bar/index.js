@@ -32,7 +32,17 @@ Component({
         switchTab(e) {
             const data = e.currentTarget.dataset
             const url = data.path
-            wx.switchTab({url})
+            // wx.switchTab({url})
+            wx.switchTab({
+                url:url,
+                success() {
+                    let currentPages = getCurrentPages();
+                    let currentPage = currentPages[0];
+                    if (currentPage){
+                        currentPage.onLoad();
+                    }
+                }
+            })
             this.setData({
                 selected: data.index
             })

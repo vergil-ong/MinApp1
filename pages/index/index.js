@@ -2,7 +2,8 @@
 // 获取应用实例
 const app = getApp()
 const httpUtil = require('../../utils/http-util')
-const util = require('../../utils/util')
+const storageUtil = require('../../utils/storage-util')
+import Dialog from "../../miniprogram_npm/@vant/weapp/dialog/dialog";
 
 var that;
 
@@ -74,7 +75,7 @@ Component({
           success: (result) => {
             console.log(result);
             for (const datum of result.data.Data) {
-              datum.showNoticeTimeFormat = util.formatTimeFromTimeStamp(datum.noticeTime);
+              datum.showNoticeTimeFormat = datum.noticeTimeShow;
             }
             that.setData({
               noteList: result.data.Data
@@ -94,7 +95,49 @@ Component({
       this.setData({
         triggered:false
       })
-    }
+    },
+    finishBtnTap(event){
+      let memoId = event.currentTarget.dataset.id
+      Dialog.confirm({
+        title: '确认完成',
+        message: '确认已完成当前提醒?',
+      }).then(() => {
+          console.log('confirm '+memoId);
 
+        wx.request({
+            url: httpUtil.getUrl('/notice/memo/done/'),
+            data: {
+              noticeMemoId: memoId
+            },
+            header: httpUtil.getCommonHeader(),
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success: (result) => {
+              console.log(result);
+              that.loadNoteList();
+            },
+            fail: (error) => {
+              console.log(error);
+            },
+            complete: () => {}
+          });
+        })
+        .catch(() => {
+          console.log('cancel '+memoId);
+        });
+    },
+    detailBtnTap(event){
+      let memoId = event.currentTarget.dataset.id
+      wx.setStorageSync(storageUtil.MEMO_ID, memoId);
+      wx.switchTab({
+        url:'/pages/memo/add/add',
+        success(e) {
+          let currentPages = getCurrentPages();
+          console.log(currentPages)
+          currentPages[0].onLoad();
+        }
+      });
+    },
   },
 })

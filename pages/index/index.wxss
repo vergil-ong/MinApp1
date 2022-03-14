@@ -1,3 +1,28 @@
 .scroll-container{
 
 }
+
+.list-cell{
+    margin-top: 10px;
+}
+.right-view-group{
+    display: inline;
+}
+.right-view{
+    display: inline-block;
+    width: 63px;
+    height: 65px;
+    font-size: 15px;
+    line-height: 65px;
+    color: #fff;
+    text-align: center;
+    margin-right: 2px;
+}
+
+.right-view-info{
+    background-color: #6E90FD;
+}
+
+.right-view-done{
+    background-color: #FFA500;
+}
