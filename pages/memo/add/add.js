@@ -38,7 +38,8 @@ Component({
         noticePeriodFirstTime:1,
         noticePeriodTimes:1,
         noticePeriodInterval:1,
-        scrollHeight:0
+        scrollHeight:0,
+        memoTaskId : 0
     },
     methods:{
         onLoad() {
@@ -163,6 +164,7 @@ Component({
                 noticePeriodFirstTime: this.data.noticePeriodFirstTime,
                 noticePeriodTimes: this.data.noticePeriodTimes,
                 noticePeriodInterval: this.data.noticePeriodInterval,
+                taskId:this.data.memoTaskId
             }
             if (!taskData.title){
                 Toast.fail('待办事项不能为空')
@@ -203,7 +205,7 @@ Component({
                 complete: () => {}
             });
         },
-        resetNoticeTask:function (){
+        resetNoticeTask:function (e){
             let memoId = wx.getStorageSync(storageUtil.MEMO_ID);
             if (memoId){
                 console.log('resetNoticeTask '+ memoId);
@@ -228,6 +230,7 @@ Component({
                                 noticePeriodFirstTime:taskData.NoticePeriodFirstTimeMinute,
                                 noticePeriodTimes:taskData.NoticePeriodTimes,
                                 noticePeriodInterval:taskData.NoticePeriodInterval,
+                                memoTaskId:taskData.id
                             });
                         } else{
                         }
@@ -250,6 +253,12 @@ Component({
                     noticePeriodTimes:1,
                     noticePeriodInterval:1,
                 });
+                if (!e){
+                    //非按钮触发
+                    this.setData({
+                       memoTaskId:0
+                    });
+                }
             }
 
         },
